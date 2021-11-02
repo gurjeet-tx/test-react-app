@@ -32,10 +32,9 @@ steps:
   inputs:
     actions: 'build'
     configuration: 'Release'
-    sdk: 'iphoneos15.0'
+    sdk: 'iphonesimulator15.0'
     xcWorkspacePath: '$(System.DefaultWorkingDirectory)/ios/*.xcodeproj'
     scheme: 'firstapp'
-    xcodeVersion: '12'
     packageApp: true
     archivePath: 'output/archive'
     exportPath: 'output/package'
