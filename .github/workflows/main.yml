@@ -17,4 +17,4 @@ jobs:
       name: Install pod dependencies
   
     - name: Build iOS (debug)
-      run: "xcodebuild -project ios/firstapp.xcodeproj -scheme firstapp clean archive -sdk iphoneos -configuration Release -UseModernBuildSystem=NO -archivePath $PWD/firstapp CODE_SIGNING_ALLOWED=NO"
+      run: "xcodebuild -project ios/firstapp.xcodeproj -scheme firstapp build
