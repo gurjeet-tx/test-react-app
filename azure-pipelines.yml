@@ -33,12 +33,10 @@ steps:
     sdk: 'iphoneos13.2'
     xcWorkspacePath: '$(System.DefaultWorkingDirectory)/ios/*.xcodeproj'
     scheme: 'firstapp'
-    xcodeVersion: 'specifyPath'
-    xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+    xcodeVersion: '12'
     packageApp: true
     archivePath: 'output/archive'
     exportPath: 'output/package'
-    signingOption: 'auto'
 
 - task: PublishBuildArtifacts@1
   displayName: "Publish Build Artifact"
