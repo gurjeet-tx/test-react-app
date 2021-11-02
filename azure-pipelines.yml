@@ -24,7 +24,9 @@ steps:
 #   inputs:
 #     workingDirectory: $(System.DefaultWorkingDirectory)/ios
 #     forceRepoUpdate: false
-
+- task: CmdLine@2
+  inputs:
+    script: 'xcodebuild -showsdks'
 - task: Xcode@5
   displayName: "Build Mobile Application"
   inputs:
