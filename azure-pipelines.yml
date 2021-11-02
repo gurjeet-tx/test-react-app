@@ -27,7 +27,7 @@ steps:
 - task: CocoaPods@0
   displayName: "Install CocoaPods dependencies"
   inputs:
-    workingDirectory: '$(System.DefaultWorkingDirectory)/ios'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/ios/'
     forceRepoUpdate: false
 - task: CmdLine@2
   inputs:
