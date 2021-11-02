@@ -14,16 +14,21 @@ steps:
   inputs:
     versionSpec: '9.7.1'
   displayName: 'Install Node'
-  
-- script: npm install
-  workingDirectory: $(System.DefaultWorkingDirectory)
-  displayName: 'Install node dependencies'
 
-- task: CocoaPods@0
-  displayName: "Install CocoaPods dependencies"
+- task: Npm@1
   inputs:
-    workingDirectory: '$(System.DefaultWorkingDirectory)/ios'
-    forceRepoUpdate: false
+    command: 'install'
+    workingDir: '$(System.DefaultWorkingDirectory)'
+
+# - script: npm install
+#   workingDirectory: $(System.DefaultWorkingDirectory)
+#   displayName: 'Install node dependencies'
+
+# - task: CocoaPods@0
+#   displayName: "Install CocoaPods dependencies"
+#   inputs:
+#     workingDirectory: '$(System.DefaultWorkingDirectory)/ios'
+#     forceRepoUpdate: false
 - task: CmdLine@2
   inputs:
     script: 'xcodebuild -showsdks'
