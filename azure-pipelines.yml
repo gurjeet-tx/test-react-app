@@ -19,11 +19,11 @@ steps:
   workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: 'Install node dependencies'
 
-# - task: CocoaPods@0
-#   displayName: "Install CocoaPods dependencies"
-#   inputs:
-#     workingDirectory: $(System.DefaultWorkingDirectory)/ios
-#     forceRepoUpdate: false
+- task: CocoaPods@0
+  displayName: "Install CocoaPods dependencies"
+  inputs:
+    workingDirectory: '$(System.DefaultWorkingDirectory)/ios'
+    forceRepoUpdate: false
 - task: CmdLine@2
   inputs:
     script: 'xcodebuild -showsdks'
