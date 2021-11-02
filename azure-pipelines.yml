@@ -16,13 +16,13 @@ steps:
   displayName: 'Install Node'
   
 - script: npm install
-  workingDirectory: $(System.DefaultWorkingDirectory)/src
+  workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: 'Install node dependencies'
 
 - task: CocoaPods@0
   displayName: "Install CocoaPods dependencies"
   inputs:
-    workingDirectory: $(System.DefaultWorkingDirectory)/src/ios
+    workingDirectory: $(System.DefaultWorkingDirectory)/ios
     forceRepoUpdate: false
 
 - task: Xcode@5
@@ -31,7 +31,7 @@ steps:
     actions: 'build'
     configuration: 'Debug'
     sdk: 'iphoneos13.2'
-    xcWorkspacePath: '$(System.DefaultWorkingDirectory)/src/ios/*.xcworkspace'
+    xcWorkspacePath: '$(System.DefaultWorkingDirectory)/ios/*.xcworkspace'
     scheme: 'firstapp'
     packageApp: true
     exportPath: 'output/package'
