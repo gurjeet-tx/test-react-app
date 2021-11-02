@@ -17,4 +17,4 @@ jobs:
       name: Install pod dependencies
   
     - name: Build iOS (debug)
-      run: "xcodebuild -project ios/firstapp.xcodeproj -scheme firstapp build
+      run: "xcodebuild -project ios/firstapp.xcodeproj -scheme firstapp build"
