@@ -31,14 +31,14 @@ steps:
     actions: 'build'
     configuration: 'Debug'
     sdk: 'iphoneos13.2'
-    xcWorkspacePath: '$(System.DefaultWorkingDirectory)/ios/*.xcworkspace'
+    xcWorkspacePath: '$(System.DefaultWorkingDirectory)/ios/*.xcodeproj'
     scheme: 'firstapp'
-    packageApp: true
-    exportPath: 'output/package'
-    archivePath: 'output/archive'
-    signingOption: 'auto'
     xcodeVersion: 'specifyPath'
     xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+    packageApp: true
+    archivePath: 'output/archive'
+    exportPath: 'output/package'
+    signingOption: 'auto'
 
 - task: PublishBuildArtifacts@1
   displayName: "Publish Build Artifact"
