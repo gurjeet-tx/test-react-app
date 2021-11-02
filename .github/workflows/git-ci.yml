@@ -9,12 +9,13 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14.x
-#     - run: npm ci
+   
     - run: npm install
-    - run: npm audit fix
     - run: xcode-select -p
     - run: pod install
       working-directory: ios
       name: Install pod dependencies
+  
     - name: Build iOS (debug)
-      run: "xcodebuild -workspace ios/firstapp.xcodeproj -scheme firstapp clean archive -sdk iphoneos -configuration Release -UseModernBuildSystem=NO -archivePath $PWD/firstapp CODE_SIGNING_ALLOWED=NO"
+     
+      run:  "xcodebuild -target 'ios/firstapp.xcodeproj' -scheme 'firstapp' -configuration 'Debug' -sdk 'iphoneos' CONFIGURATION_BUILD_DIR='iso' ONLY_ACTIVE_ARCH=NO"
