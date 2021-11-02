@@ -32,7 +32,7 @@ steps:
   inputs:
     actions: 'build'
     configuration: 'Debug'
-    sdk: 'iphoneos13.2'
+    sdk: 'iphoneos'
     xcWorkspacePath: '$(System.DefaultWorkingDirectory)/ios/*.xcodeproj'
     scheme: 'firstapp'
     xcodeVersion: '12'
