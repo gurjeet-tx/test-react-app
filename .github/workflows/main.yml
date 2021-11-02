@@ -1,0 +1,21 @@
+name: iOS
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - run: yarn cache clean
+    - run: yarn
+    - run: xcode-select -p
+    - run: pod install
+      working-directory: ios
+      name: Install pod dependencies
+    - run: yarn cache clean
+    - run: yarn add @react-native-community/cli-platform-ios@3.0.0
+    - name: Build iOS (debug)
+      run: "xcodebuild -workspace ios/firstapp.xcodeproj -scheme firstapp clean archive -sdk iphoneos -configuration Release -UseModernBuildSystem=NO -archivePath $PWD/firstapp CODE_SIGNING_ALLOWED=NO"
