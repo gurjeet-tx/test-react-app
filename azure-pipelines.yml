@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: macOS-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '9.7.1'
+  displayName: 'Install Node'
+  
+- script: npm install
+  workingDirectory: src
+  displayName: 'Install node dependencies'
+
+- task: CocoaPods@0
+  displayName: "Install CocoaPods dependencies"
+  inputs:
+    workingDirectory: src/ios
+    forceRepoUpdate: false
+
+- task: Xcode@5
+  displayName: "Build Mobile Application"
+  inputs:
+    actions: 'build'
+    configuration: 'Debug'
+    sdk: 'iphoneos13.2'
+    xcWorkspacePath: 'src/ios/*.xcworkspace'
+    scheme: 'firstapp'
+    packageApp: true
+    exportPath: 'output/package'
+    archivePath: 'output/archive'
+    signingOption: 'auto'
+    xcodeVersion: 'specifyPath'
+    xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+
+- task: PublishBuildArtifacts@1
+  displayName: "Publish Build Artifact"
+  inputs:
+    PathtoPublish: 'output/package/*.ipa'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
