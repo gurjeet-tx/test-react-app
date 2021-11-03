@@ -12,6 +12,7 @@ jobs:
         node-version: 14.x
     
     - run: npm install
+    - run: react-native bundle --entry-file='index.js' --bundle-output='ios/main.jsbundle' --dev=false --platform='ios' --assets-dest='ios'
 
     - run: xcode-select -p
     - run: pod install
