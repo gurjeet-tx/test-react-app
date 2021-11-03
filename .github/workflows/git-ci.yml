@@ -27,5 +27,6 @@ jobs:
      # run: "xcodebuild archive -scheme firstapp -project ios/firstapp.xcodeproj -configuration Debug -archivePath ios/ "
       run:  "xcodebuild -workspace ios/firstapp.xcworkspace -scheme firstapp -configuration Debug -sdk iphoneos ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO -derivedDataPath DerivedData -archivePath DerivedData/Archive/firstapp archive"
       working-directory: main
+
     - name: "export"
-      run: "xcodebuild -exportArchive -archivePath DerivedData/Archive/firstapp.xarchive -exportPath DerivedData/ipa"
+      run: "xcodebuild -exportArchive -archivePath DerivedData/Archive/firstapp.xarchive -exportOptionsPlist Provisioning/App-Store.plist -exportPath DerivedData/ipa"
