@@ -22,9 +22,9 @@ jobs:
      # run: "xcodebuild archive -scheme firstapp -project ios/firstapp.xcodeproj -configuration Debug -archivePath ios/ "
       run:  "xcodebuild -workspace ios/firstapp.xcworkspace -scheme firstapp -configuration Debug -sdk iphoneos ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO -derivedDataPath DerivedData -archivePath DerivedData/Archive/firstapp archive"
 
-    - run: ls main/**/DerivedData/Archive/
+    - run: ls DerivedData/Archive/
 
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: main/**/**/DerivedData/Archive/
+        path: DerivedData/Archive/
