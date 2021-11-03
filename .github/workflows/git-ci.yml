@@ -24,9 +24,9 @@ jobs:
 
     - name: "export"
       run: "xcodebuild -exportArchive -archivePath DerivedData/Archive/firstapp.xarchive -exportOptionsPlist Provisioning/*.plist -exportPath DerivedData/ipa"
-
+    - run: ls ../DerivedData/Archive/
 
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: ../../DerivedData/Archive/*.ipa
+        path: ../../DerivedData/Archive/*
