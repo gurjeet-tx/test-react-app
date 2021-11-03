@@ -15,7 +15,7 @@ jobs:
 
     - run: xcode-select -p
     - run: pod install
-      working-directory: iso
+      working-directory: ios
 
       name: Install pod dependencies
     - name: Build iOS (debug)
