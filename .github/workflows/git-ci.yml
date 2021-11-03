@@ -29,4 +29,5 @@ jobs:
       working-directory: main
 
     - name: "export"
-      run: "xcodebuild -exportArchive -archivePath DerivedData/Archive/firstapp.xarchive -exportOptionsPlist Provisioning/App-Store.plist -exportPath DerivedData/ipa"
+      run: "xcodebuild -exportArchive -archivePath DerivedData/Archive/firstapp.xarchive -exportOptionsPlist Provisioning/*.plist -exportPath DerivedData/ipa"
+      working-directory: main
