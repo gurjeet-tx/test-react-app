@@ -5,9 +5,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-#       with:
-#         path: main
-#     - run: ls main/ios
    
     - name: Use Node.js
       uses: actions/setup-node@v1
@@ -15,22 +12,18 @@ jobs:
         node-version: 14.x
     
     - run: npm install
-      working-directory: main
-#     - run: ls main
-#     - run: ls main/ios
+
     - run: xcode-select -p
     - run: pod install
-#       working-directory: main/ios
+
       name: Install pod dependencies
-#     - run: ls main/ios
     - name: Build iOS (debug)
      # run: "xcodebuild archive -scheme firstapp -project ios/firstapp.xcodeproj -configuration Debug -archivePath ios/ "
       run:  "xcodebuild -workspace ios/firstapp.xcworkspace -scheme firstapp -configuration Debug -sdk iphoneos ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO -derivedDataPath DerivedData -archivePath DerivedData/Archive/firstapp archive"
-#       working-directory: main
 
     - name: "export"
       run: "xcodebuild -exportArchive -archivePath DerivedData/Archive/firstapp.xarchive -exportOptionsPlist Provisioning/*.plist -exportPath DerivedData/ipa"
-#       working-directory: main
+
 
     - uses: actions/upload-artifact@v2
       with:
