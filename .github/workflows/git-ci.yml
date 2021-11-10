@@ -18,12 +18,12 @@ jobs:
       working-directory: ios
 
       name: Install pod dependencies
-    - name: Build iOS (debug)
+#     - name: Build iOS (debug)
 #       run: "xcodebuild -workspace ios/firstapp.xcworkspace -scheme firstapp clean archive -sdk iphonesimulator -configuration Debug -UseModernBuildSystem=NO -archivePath DerivedData/Archive/firstapp CODE_SIGNING_ALLOWED=NO"
-      run:  "xcodebuild -workspace ios/firstapp.xcworkspace -scheme firstapp -configuration Debug -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO -derivedDataPath DerivedData -archivePath DerivedData/Archive/firstapp archive"
+#       run:  "xcodebuild -workspace ios/firstapp.xcworkspace -scheme firstapp -configuration Debug -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO -derivedDataPath DerivedData -archivePath DerivedData/Archive/firstapp archive"
 
     - name: Test iOS (debug)
-      run:  "xcodebuild test -project ios/firstapp.xcodeproj -scheme firstapp -destination 'platform=iOS Simulator,name=iPhone 8,OS=14.4' "
+      run:  "xcodebuild test -workspace ios/firstapp.xcworkspace -scheme firstapp -destination 'platform=iOS Simulator,name=iPhone 8,OS=14.4' "
     
     - run: ls DerivedData/Archive/
     
