@@ -11,21 +11,27 @@ jobs:
       with:
         node-version: 14.x
     
-    - run: npm install
+    - run: |
+      npm install
+      npm install react-native-cli
 
     - run: xcode-select -p
     - run: pod install
       working-directory: ios
 
       name: Install pod dependencies
+        react-native run-ios --configuration Release
+        mkdir ios/output
+        find ~/Library/Developer/Xcode/DerivedData -type d -name "*.app" | grep -r Build/Products/Release-iphonesimulator/*.app | xargs -I '{}'  cp -r '{}' ios/output
+
 #     - name: Build iOS (debug)
 #       run: "xcodebuild -workspace ios/firstapp.xcworkspace -scheme firstapp clean archive -sdk iphonesimulator -configuration Debug -UseModernBuildSystem=NO -archivePath DerivedData/Archive/firstapp CODE_SIGNING_ALLOWED=NO"
 #       run:  "xcodebuild -workspace ios/firstapp.xcworkspace -scheme firstapp -configuration Debug -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO -derivedDataPath DerivedData -archivePath DerivedData/Archive/firstapp archive"
 
-    - name: Test iOS (debug)
-      run:  "xcodebuild test -workspace ios/firstapp.xcworkspace -scheme firstapp -destination 'platform=iOS Simulator,name=iPhone 8,OS=14.4' "
+    # - name: Test iOS (debug)
+    #   run:  "xcodebuild test -workspace ios/firstapp.xcworkspace -scheme firstapp -destination 'platform=iOS Simulator,name=iPhone 8,OS=14.4' "
     
-    - run: ls DerivedData/Archive/
+    - run: ls ios/output
     
     - run: sudo xcodebuild -license
     - uses: actions/upload-artifact@v2
